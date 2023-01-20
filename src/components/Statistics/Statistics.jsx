@@ -4,6 +4,12 @@ import { FaRegThumbsUp } from 'react-icons/fa';
 import { MdPeople, MdOutlineProductionQuantityLimits } from 'react-icons/md';
 import { GiTreeDoor } from 'react-icons/gi';
 import PropTypes from 'prop-types';
+const icons = [
+  <FaRegThumbsUp />,
+  <MdPeople />,
+  <MdOutlineProductionQuantityLimits />,
+  <GiTreeDoor />,
+];
 
 export const Statistics = ({ title, stats }) => {
   return (
@@ -11,10 +17,28 @@ export const Statistics = ({ title, stats }) => {
       {title && <StatisticTitle>{title}</StatisticTitle>}
 
       <StatisticsList>
-        {stats.map(({ id, title, total }) => {
-          <StatisticItem key={id} title={title} total={total} />;
+        {stats.map(({ id, title, total }, index) => {
+          return (
+            <StatisticItem
+              key={id}
+              title={title}
+              total={total}
+              icon={icons[index]}
+            />
+          );
         })}
       </StatisticsList>
     </>
   );
+};
+
+Statistics.propTypes = {
+  title: PropTypes.string,
+  stats: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      total: PropTypes.number.isRequired,
+    }),
+  ).isRequired,
 };
