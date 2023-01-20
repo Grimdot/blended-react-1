@@ -1,3 +1,5 @@
+import { formatDateToNow } from 'helpers/formatDate';
+
 import {
   Card,
   CardHeader,
@@ -40,7 +42,7 @@ export const BlogCard = ({
           <Avatar src={avatar} alt={name} />
           <UserInfo>
             <UserName>{name}</UserName>
-            <Date>{postedAt}</Date>
+            <Date>{formatDateToNow(postedAt)}</Date>
           </UserInfo>
         </UserBox>
       </CardFooter>
